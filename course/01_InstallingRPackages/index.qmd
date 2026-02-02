@@ -27,7 +27,7 @@ Welcome to the first week of [Cytometry in R](/Schedule.qmd)! This week we will 
 Before getting started, please make sure you have completed the creating a [GitHub](/course/00_GitHub/) and [Workstation Setup](/course/00_WorkstationSetup/) walk-throughs, since we will begin where they left off once the required software was successfully installed.
 
 :::{.callout-important}
-Please make sure to [sync]() your forked version of the CytometryInR repository, and [pull](/course/00_Git/index.qmd#pull) any changes to your local computer's CytometryInR project folder so that you have the most recent version of the code and data available. 
+Please make sure to [sync](/course/00_Homeworks/index.qmd#sync-your-fork) your forked version of the CytometryInR repository, and [pull](/course/00_Git/index.qmd#pull) any changes to your local computer's CytometryInR project folder so that you have the most recent version of the code and data available. 
 :::
 
 <br>
@@ -99,7 +99,7 @@ In this session, we will work on installing the various R packages we will need 
 Alright, with the background out of the way, let's get started! 
 
 :::{.callout-important}
-Please make sure to [sync]() your forked version of the CytometryInR repository, and [pull](/course/00_Git/index.qmd#pull) any changes to your local computer's CytometryInR project folder so that you have the most recent version of the code and data available. 
+Please make sure to [sync](/course/00_Homeworks/index.qmd#sync-your-fork) your forked version of the CytometryInR repository, and [pull](/course/00_Git/index.qmd#pull) any changes to your local computer's CytometryInR project folder so that you have the most recent version of the code and data available. 
 :::
 
 :::{.callout-warning}
@@ -503,6 +503,8 @@ As always, don't forget the "" when running an `install()` command.
 ```
 
 ```{r}
+#| eval: FALSE
+
 install("PeacoQC")
 ```
 
@@ -1276,7 +1278,7 @@ Remember to submit any encountered installation error screenshots to the [Discus
 
 In this session, we walked through what are R packages, where to find them, how to install them, and a bit about troubleshooting any installation errors you may encounter during the process.
 
-You then proceeded to install most of the R packages that you would need throughout the [Cytometry in R course](/Schedule.qmd). These included tidyverse packages from the [CRAN] repository used for working with data structures and plots, as well as more cytometry focused R packages from [Bioconductor] repository.
+You then proceeded to install most of the R packages that you would need throughout the [Cytometry in R course](/Schedule.qmd). These included tidyverse packages from the [CRAN](https://cran.r-project.org/) repository used for working with data structures and plots, as well as more cytometry focused R packages from [Bioconductor](https://www.bioconductor.org/) repository.
 
 If you have any questions, or want to discuss this week's topics in more depth with the other course participants, please head over to the [Discussion](https://github.com/UMGCCCFCSR/CytometryInR/discussions) page and open a new topic. 
 
@@ -1294,7 +1296,7 @@ Until then, Best Wishes!
 
 # Additional Resources
 
-[Tidy Tales](https://tidytales.ca/series/2023-01-24_reproducible-data-science/posts/r-packages.html) An usefu beginner-friendly blogpost covering additional aspects from a different perspective.
+[Tidy Tales](https://tidytales.ca/series/2023-01-24_reproducible-data-science/posts/r-packages.html) An useful beginner-friendly blogpost covering additional aspects from a different perspective.
 
 [Introduction to Bioconductor](https://youtu.be/dg6NvmMVQ3I?si=WfsqpO3Z-M2oG8zh) A talk by Martin Morgan with more information about the Bioconductor project.
 
