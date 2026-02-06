@@ -22,26 +22,6 @@ Welcome to the first week of [Cytometry in R](/Schedule.qmd)! This week we will 
 
 :::
 
----
-
-::: {.fragment}
-::: {.callout-important}
-
-Before getting started, please make sure you have completed the creating a [GitHub](/course/00_GitHub/) and [Workstation Setup](/course/00_WorkstationSetup/) walk-throughs, since we will begin where they left off once the required software was successfully installed.
-
-:::
-:::
-
-::: {.fragment}
-::: {.callout-important}
-
-Please make sure to [sync](/course/00_Homeworks/index.qmd#sync-your-fork) your forked version of the CytometryInR repository, and [pull](/course/00_Git/index.qmd#pull) any changes to your local computer's CytometryInR project folder so that you have the most recent version of the code and data available. 
-
-:::
-:::
-
----
-
 # Background
 
 ::: {.fragment}
@@ -80,27 +60,6 @@ Regardless if you are working with [flow cytometry](https://www.bioconductor.org
 
 ---
 
-:::{.callout-tip}
-
-R packages can also just be made for fun! Among my favorite examples of this, there is an R package that lets you add the snake game to your [recalculating screen](https://github.com/AdamSpannbauer/snakeLoadR), as well as R packages that provide the color-palette schemes needed to make your plots with [Studio Ghibli](https://github.com/ewenme/ghibli), [Wes Anderson](https://github.com/karthik/wesanderson), or [Bluey](https://github.com/ekholme/blueycolors) colors.
-
-:::
-
-::: {.fragment}
-
-![](images/Ghibli.png){fig-width=100}
-:::
-
----
-
-::: {.fragment}
-::: {.callout-tip title="."}
-
-These R packages start off as [source code](https://r-pkgs.org/structure.html#sec-package-states) (which is what we will be learning to write during this course). When you install a R package to your computer, this human-readable source code gets converted into a binary format with which your computer can interact directly.
-
-:::
-:::
-
 
 ::: {.fragment}
 ::: {.callout-tip title="."}
@@ -111,14 +70,6 @@ Expanding on this concept, a new R package can be made up of new code (primarily
 :::
 
 ---
-
-::: {.fragment}
-::: {.callout-tip title="."}
-
-To make distributing the thousands of R packages and their associated package dependencies easier, R packages are collected (ie. hosted) within **repositories**, which function as an intermediate distributor. 
-
-:::
-:::
 
 ::: {.fragment}
 ::: {.callout-tip title="."}
@@ -140,80 +91,9 @@ The process of installing R packages will vary a bit depending on which reposito
 :::
 :::
 
-
-::: {.fragment}
-::: {.callout-tip title="."}
-
-In this session, we will work on installing the various R packages we will need through the course. While doing so, we will explore how to figure out which repository the individual package is in; what installation commands to use to download it; and how to look up the help documentation. We will also touch on how the functions within an R package are made available for our computer to use (via the `library()` call), and how to troubleshoot the more commonly encountered installation errors. 
-
-:::
-:::
-
 ---
 
 # Getting Started
-
-## Set Up
-
-Alright, with the background out of the way, let's get started! 
-
-::: {.fragment}
-:::{.callout-important}
-
-Please make sure to [sync](/course/00_Homeworks/index.qmd#sync-your-fork) your forked version of the CytometryInR repository, and [pull](/course/00_Git/index.qmd#pull) any changes to your local computer's CytometryInR project folder so that you have the most recent version of the code and data available.
-
-:::
-:::
-
-::: {.fragment}
-:::{.callout-warning}
-
-Please remember to always copy over the new material from your local CytometryInR folder to a separate Project Folder that you created and named (ex. "Week_01" or "MyLearningFolder", etc.). This will ensure any edits you make to the files do not affect your ability to bring in next week's materials to the CytometryInR folder
-
-:::
-:::
-
----
-
-::: {.fragment}
-:::{.callout-warning}
-
-After pulling the new data and code locally, open CytometryInR, open the course folder, and open the 01_InstallingRPackages folder. From here, copy the **index.qmd** file to your own working Project Folder (ex. Week_01) where you can work on it without causing any conflicts. Then return to Positron and open up your working project folder (ex. Week_01). 
-
-:::
-:::
-
----
-
-![](images/01_Interpreter.png)
-
----
-
-::: {.fragment}
-::: {.callout-tip title="."}
-
-Next up, within [Positron](/course/00_Positron/index.qmd#interpreter), let's make sure to select R as the coding language being used for this session.
-
-:::
-:::
-
----
-
-![](images/01_Interpreter.png)
-
----
-
-::: {.fragment}
-::: {.callout-tip title="."}
-
-Now that R is running within Positron, the console (lower portion of the screenn) is now able to run (ie. execute) any R code that is sent to it. 
-
-:::
-:::
-
----
-
-![](https://positron.posit.co/images/user-interface-for-rstudio-migration.jpeg)
 
 ## Checking for Loaded Packages
 
@@ -264,15 +144,6 @@ If you hover over the line of code within Positron, you will glimpse the help fi
 ---
 
 ::: {.fragment}
-::: {.callout-tip title="."}
-
-In this case, we can see the help documentation corresponding for `sessionInfo()`. Beyond hovering over the function, this can also be accessed by adding a ? directly in front of the function, and then running that line of code. 
-
-:::
-:::
-
-
-::: {.fragment}
 
 ```{r}
 #| eval: FALSE
@@ -284,34 +155,6 @@ In this case, we can see the help documentation corresponding for `sessionInfo()
 ---
 
 ![](images/03_QuestionMark.png)
-
----
-
-::: {.fragment}
-::: {.callout-tip title="."}
-
-When executed, the function's help file documentation will open up within the Help tab in the secondary side bar on the right-side of the screen. Glancing at the top of the page we can see the name of the package that contains the `sessionInfo()` function (`{utils}`). Scrolling down the help page past all the documentation, we can see a link to the index page. 
-
-:::
-:::
-
----
-
-![](images/04_Index.png)
-
----
-
-::: {.fragment}
-::: {.callout-tip title="."}
-
-After clicking, the Help tab switches from viewing the documentation for the `sessionInfo()` function, to showing all the functions within the `utils` package. Most R packages contain help documentation, so this process can be adapted to find out additional information about what a function does, and what arguments are needed to produce customized outputs.
-
-:::
-:::
-
----
-
-![](images/05_UtilsFunctions.png)
 
 ---
 
@@ -601,135 +444,6 @@ By contrast, is we check for the `ggplot()` function from the ggplot2 package (w
 ?ggplot
 ```
 
-:::
-
----
-
-::: {.fragment}
-::: {.callout-tip title="."}
-
-Beyond individual functions, some R packages also have help landing pages, that can be similarly accessed by adding a ? in front of the package name:
-
-:::
-:::
-
----
-
-![](images/11_PackageLanding.png)
-
----
-
-### Unattaching
-
-::: {.fragment}
-::: {.callout-tip title="."}
-
-So far, we have installed an R package, and then attached it (via `library()`). How would we reverse these steps?
-
-Well, to unload it from the local environment, there are a couple options. You could of course simply shut down Positron. The local environment only exist in context of when you open and close the session, which closing the program will do. All previously loaded R packages will be unattached, which is why when you start a new session you will need to load in all packages you plan on using via `library()`.
-
-Alternatively, although less used, you could `detach()` it via your console:
-
-:::
-:::
-
-::: {.fragment}
-
-```{r}
-detach("package:dplyr", unload=TRUE)
-```
-
-:::
-
-::: {.fragment}
-
-```{r}
-sessionInfo()
-```
-
-:::
-
----
-
-::: {.fragment}
-::: {.callout-tip title="."}
-
-Looking at the `sessionInfo()` output, dplyr is no longer attached to the local environment. Consequently, if we try to once again look for the documentation, no information will be retrieved. 
-
-:::
-:::
-
-::: {.fragment}
-
-```{r}
-?dplyr
-```
-
-:::
-
----
-
-::: {.fragment}
-::: {.callout-tip title="."}
-
-There is a workaround however, if we want to access functions from an unloaded R package. We can specify the R package's name, followed by two :, and then the function name. The :: conveys the context to your computer that the package is present, but may not be attached.
-
-:::
-:::
-
-::: {.fragment}
-
-```{r}
-#| eval: FALSE
-?dplyr::select()
-```
-
-:::
-
-::: {.fragment}
-::: {.callout-tip title="."}
-
-This particular use case can be useful if we want to run a particular function, but not load in all a packages functions (which may have identical function names to other R packages we are using and cause some conflicts).
-
-:::
-:::
-
----
-
-### Removing Packages
-
-::: {.fragment}
-::: {.callout-tip title="."}
-
-Just as we can install an R package, we can also uninstall an R package (although doing so is rare, most often when encountering package dependency conflict). To do so, we would use the `remove.packages()` function.
-
-:::
-:::
-
-::: {.fragment}
-
-```{r}
-#| eval: FALSE
-?remove.packages()
-```
-
-:::
-
-::: {.fragment}
-
-```{r}
-#| eval: FALSE
-remove.packages("dplyr")
-```
-
-:::
-
-::: {.fragment}
-::: {.callout-tip title="."}
-
-This results in the package being removed entirely from our computer. We would then need to reinstall it if needed in the future.
-
-:::
 :::
 
 ---
@@ -1227,139 +941,6 @@ If you encounter an installation error this week, please take screenshots of the
 
 ---
 
-## Installing Specific-Package Versions
-
-::: {.fragment}
-
-::: {.callout-tip title="."}
-While we may be tempted to think of R packages as static, they change quite often, as their develipers add new features, fix bugs, etc. To help keep track of these changes (essential for [reproducibility](https://www.nature.com/articles/d42473-019-00004-y) and replicability), R packages have version numbers. 
-
-When we run `sessionInfo()`, we can see an example of this, with the version number appearing after the package name.
-
-::: 
-:::
-
-
-::: {.fragment}
-
-```{r}
-sessionInfo()
-```
-
-:::
-
----
-
-::: {.fragment}
-::: {.callout-tip title="."}
-
-Alternatively, we can retrieve the same information for the individual packages via the `packageVersion()` function
-
-::: 
-:::
-
-::: {.fragment}
-
-```{r}
-packageVersion("PeacoQC")
-```
-
-:::
-
----
-
-::: {.fragment}
-::: {.callout-tip title="."}
-
-As well as from the `citation()` function. 
-
-::: 
-:::
-
-::: {.fragment}
-
-```{r}
-citation("PeacoQC")
-```
-
-:::
-
----
-
-::: {.fragment}
-::: {.callout-tip title="."}
-
-How does a version number work? Lets say we have the following version number: **1.20.0** 
-
-The first number of the version (**1.** in this case) denotes major changes, primarily those where after the version change the package may not be compatible with the code used in the prior version. As a consequence, this number changes rarely. 
-
-The second number (**.20.** in this case) is the minor version. Minor changes typically consist of new features that are added, that don't affect the overall package function. These will change more frequently, especially for Bioconductor packages with fixed [release cycles](https://www.bioconductor.org/developers/release-schedule/).
-
-The final number (**.0** in this case) is often used to denote small changes occuring within a minor release period, often bug-fixes or fixing typos within the documentation. 
-
-::: 
-:::
-
----
-
-::: {.fragment}
-::: {.callout-tip title="."}
-
-We may in the future need to install specific package versions (but wont be doing so today). As expected, which repository contains the R package influences how we would go about doing this. 
-
-For CRAN packages, we can use the `remotes` packages `install_version()` function. This allows us to provide the version number, and designate the repository location (the CRAN url in this case).
-
-::: 
-:::
-
-::: {.fragment}
-
-```{r}
-#| eval: FALSE
-remotes::install_version("ggplot2", version = "3.5.2", repos = "https://cloud.r-project.org")
-```
-
-:::
-
----
-
-::: {.fragment}
-::: {.callout-tip title="."}
-
-For GitHub-based R packages, the package versioning schema is not as strict as that of CRAN or Bioconductor. Typically, changes in R packagaes are put out by their developers as [releases](https://github.com/DavidRach/Luciernaga/releases). When trying to install a particular release, we can add an additional argument to the `install_github()` function, specifying the release version's tag number. For example:
-
-::: 
-:::
-
-::: {.fragment}
-
-```{r}
-#| eval: FALSE
-remotes::install_github("DavidRach/Luciernaga", ref = "v0.99.7")
-```
-
-:::
-
----
-
-::: {.fragment}
-::: {.callout-tip title="."}
-
-Alternatively, if the developer doesn't implement releases, you can provide the hash number of a particular commit.
-
-::: 
-:::
-
-::: {.fragment}
-
-```{r}
-#| eval: FALSE
-
-remotes::install_github("DavidRach/Luciernaga", ref = "8d1d694")
-```
-
-:::
-
 
 ## Documentation and Websites
 
@@ -1644,7 +1225,7 @@ R package: ggcyto
 # Location: Bioconductor
 # Website: https://www.bioconductor.org/packages/release/bioc/html/ggcyto.html
 
-install("ggcyto")
+install.packages("ggcyto")
 ```
 
 :::
@@ -1690,7 +1271,7 @@ R package: openCyto
 # Location: Bioconductor
 # Website: https://www.bioconductor.org/packages/release/bioc/html/openCyto.html
 
-install("openCyto")
+install.packages("openCyto")
 ```
 
 :::
@@ -1713,7 +1294,7 @@ R package: FlowSOM
 # Location: Bioconductor
 # Website: https://www.bioconductor.org/packages/release/bioc/html/FlowSOM.html
 
-install("FlowSOM")
+install.packages("FlowSOM")
 ```
 
 :::
