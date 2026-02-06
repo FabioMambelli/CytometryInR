@@ -1,0 +1,35 @@
+---
+title: "Homework for week 1"
+author: "Fabio Mambelli"
+date: 06/02/2026
+format: html
+---
+
+
+#Homework 1
+
+#We installed PeacoQC during this session, but we didn’t have time to explore what functions are present within the package. Using what you have learned about accessing documentation, figure out and list what functions it contains
+#PeacoQC will determine peaks on the channels in the flowframe. Then it will remove anomalies caused by e.g. clogs, changes in speed etc. by using an IsolationTree and/or the MAD method.
+
+
+#Homework 2
+
+#I believe there are 2361, beeing 69 for cytometry. Probably Mike Jiang have the most contributions.
+#The ones that caught my attention are: flowGate, flowCHIC, SamSPECTRAL, spillR, CytoDx.
+
+#Homework 3
+
+```{r}
+install.packages("pak")
+library(pak)
+```
+
+```{r}
+pak::pkg_install("broom")
+pak::pkg_install("cytoMEM")
+pak::pkg_install("DillonHammill/CytoExploreR")
+```
+
+#I could not install DillonHammill/CytoExploreR using pak. Errors pointed to unresolved and incorrectly specified dependencies (EmbedSOM, not found in GitHub repository).
+
+#But, I think the feedbacks were more simple to understand.
