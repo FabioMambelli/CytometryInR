@@ -28,7 +28,7 @@
     "href": "course/02_FilePaths/index.html#working-directory",
     "title": "02 - File Paths",
     "section": "Working Directory",
-    "text": "Working Directory\nNow that we are back in our Week2 folder, let’s start by seeing our current location similarly to how our computer perceives it.\nWe will use getwd() function (ie. get working directory) to return the location of the folder we are currently inside of. For example, when getwd() is run in the process of generating the webpage for 02_FilePaths, we see the following location\n\ngetwd()\n\n[1] \"/home/david/Documents/CytometryInR/course/02_FilePaths\"\n\n\nThis location is the Working Directory, as viewed from the computer’s perspective.",
+    "text": "Working Directory\nNow that we are back in our Week2 folder, let’s start by seeing our current location similarly to how our computer perceives it.\nWe will use getwd() function (ie. get working directory) to return the location of the folder we are currently inside of. For example, when getwd() is run within my Week2 project folder, I see the following location\n\ngetwd()\n\n\nThis returns a file path. The final location (Week2 in this case) is the Working Directory. Your computer when working in R will be descern other locations in relation to this directory.",
     "crumbs": [
       "About",
       "Intro to R",
@@ -40,7 +40,7 @@
     "href": "course/02_FilePaths/index.html#directories",
     "title": "02 - File Paths",
     "section": "Directories",
-    "text": "Directories\nWithin this working directory, we have a variety of project folders and files related to the course. We can see the folders that are present using the list.dirs() function.\n\nlist.dirs(path=\".\", full.names=FALSE, recursive=FALSE)\n\n[1] \"data\"   \"images\"\n\n\nWithin this list.dirs() function, we are specifying two arguments with which we will be working with later today, full.names and recursive. For now, lets set their arguments to FALSE, which means they conditions they implement are inactive (turned off).\n\n\nThe path argument is currently set to “.”, which is a stand-in for the present directory. In R, if an argument is not specified directly, it is inferred based on an order of expected arguments. Thus, if not present, we could still get the same output as seen before.\n\nlist.dirs(full.names=FALSE, recursive=FALSE)\n\n[1] \"data\"   \"images\"\n\n\n\n\nAmong the list of folders, we have two hidden folders (denoted by the “.” in front of the folder name), ie the “.git” and “.quarto” folders. If you are working within Positron, the hidden quarto file is shown in a lighter gray color.\n\nThe three not-hidden folders are also listed. We will see how to navigate these in a second.",
+    "text": "Directories\nWithin this working directory, we have a variety of project folders and files related to the course. We can see the folders that are present using the list.dirs() function.\n\nlist.dirs(path=\".\", full.names=FALSE, recursive=FALSE)\n\n\nWithin this list.dirs() function, we are specifying two arguments with which we will be working with later today, full.names and recursive. For now, lets set their arguments to FALSE, which means they conditions they implement are inactive (turned off).\n\n\nThe path argument is currently set to “.”, which is a stand-in for the present directory. In R, if an argument is not specified directly, it is inferred based on an order of expected arguments. Thus, if not present, we could still get the same output as seen before.\n\nlist.dirs(full.names=FALSE, recursive=FALSE)\n\n\n\n\nWithin Positron, in addition to visible folders, we also have hidden folders (denoted by the “.” in front of the folder name when using list.dirs()). In the case of one of our course website folders, we can see a “.quarto” folder shown in a lighter gray . The “.git” folder we saw from list.dirs() is typically hidden when viewing from Positron.\n\nIn the case of Week2, the two not-hidden folders we created are listed. We will see how to navigate these in a second.",
     "crumbs": [
       "About",
       "Intro to R",
@@ -52,7 +52,7 @@
     "href": "course/02_FilePaths/index.html#variables",
     "title": "02 - File Paths",
     "section": "Variables",
-    "text": "Variables\nBefore exploring file paths, we need to have some basic R code knowledge that we can use to work with them. Within R, we have the ability to assign particular values (be they character strings, numbers or logicals) to objects (ie. variables) that can be used when called upon later.\nFor example:\n\nWhatDayDidIWriteThis &lt;- \"Saturday\"\n\nIn this case, the variable name is what the assignment arrow (“&lt;-”) is pointing at. In this case, WhatDayDidIWriteThis\n\n\nWhen we run this, we create a variable, that will appear within the right-sidebar.\n\nWhatDayDidIWriteThis &lt;- \"Saturday\"\n\n\n\nThese variables can subsequently be retrieved by printing (ie. running) the name of the variable\n\nWhatDayDidIWriteThis \n\n[1] \"Saturday\"\n\n\n\n\nYou can create variables with almost any name you can think of\n\nTopSecretMeetingDay &lt;- \"Saturday\"\n\n\n\nWith a few exceptions. R doesn’t play well with spaces:\n\nTop Secret Meeting Day &lt;- \"Saturday\"\n\nError in parse(text = input): &lt;text&gt;:1:5: unexpected symbol\n1: Top Secret\n        ^\n\n\n\n\nBut does play well with underscores:\n\nTop_Secret_Meeting_Day &lt;- \"Saturday\"\n\n\n\nThe above (with individual words separated by _) is collectively known as snake case. The alternate way to help delineate variable names is “camelCase”, with first letter of each word being capitalized (seen in the previous example).\n\n\n\n\nTopSecretMeetingDay\n\n[1] \"Saturday\"\n\n\n\n\nYou can overwrite a Variable name by assigning a different value to it:\n\nTopSecretMeetingDay &lt;- \"Monday\"\n\n\nTopSecretMeetingDay\n\n[1] \"Monday\"\n\n\n\n\nYou can also remove individual variables via the rm function\n\nrm(Top_Secret_Meeting_Day)\n\n\n\nOr if trying to remove all, via the right sidebar\n\n\n\nIn the prior case, we are creating a variable that is a “string” of character values, due to our use of “” around the word. We can see this when we use the str() function.\n\nFluorophores &lt;- \"FITC\"\nstr(Fluorophores)\n\n chr \"FITC\"\n\n\nThe “chr” in front denotating that Fluorophores contains a character string.\n\n\nThis could also be retrieved using the class() function.\n\nclass(Fluorophores)\n\n[1] \"character\"\n\n\n\n\nAlternatively, we could assign a numeric value to a variable\n\nFluorophores &lt;- 29\nstr(Fluorophores)\n\n num 29\n\n\nWhich returns “num”, ie. numeric.\n\n\nWe can also specify a logical (ie. True or FALSE) to a particular object\n\nIsPerCPCy5AGoodFluorophore &lt;- FALSE\nstr(IsPerCPCy5AGoodFluorophore)\n\n logi FALSE\n\n\nWhich returns logi in front, denoting this variable contains a logical value.\n\n\nLast week, when we were installing dplyr, the reason that installation failed was install.packages() expects a character string. However, when we left off the ““, it looked within our local environments created variables for the dplyr variable, couldn’t find it, and thus failed.\nWe could of course, have assigned a character value to a variable name, and then used that variable name, which would have worked.\n\nPackageToInstall &lt;- \"dplyr\"\n\ninstall.packages(PackageToInstall)",
+    "text": "Variables\nBefore exploring file paths, we need to have some basic R code knowledge that we can use to work with them. Within R, we have the ability to assign particular values (be they character strings, numbers or logicals) to objects (ie. variables) that can be used when called upon later.\nFor example:\n\nWhatDayDidIWriteThis &lt;- \"Saturday\"\n\nIn this case, the variable name is what the assignment arrow (“&lt;-”) is pointing at. In this case, WhatDayDidIWriteThis\n\n\nWhen we run this, we create a variable, that will appear within the right-sidebar.\n\nWhatDayDidIWriteThis &lt;- \"Saturday\"\n\n\n\n\nThese variables can subsequently be retrieved by printing (ie. running) the name of the variable\n\nWhatDayDidIWriteThis \n\n[1] \"Saturday\"\n\n\n\n\nYou can create variables with almost any name you can think of\n\nTopSecretMeetingDay &lt;- \"Saturday\"\n\n\n\nWith a few exceptions. R doesn’t play well with spaces:\n\nTop Secret Meeting Day &lt;- \"Saturday\"\n\nError in parse(text = input): &lt;text&gt;:1:5: unexpected symbol\n1: Top Secret\n        ^\n\n\n\n\nBut does play well with underscores:\n\nTop_Secret_Meeting_Day &lt;- \"Saturday\"\n\n\n\nThe above (with individual words separated by _) is collectively known as snake case. The alternate way to help delineate variable names is “camelCase”, with first letter of each word being capitalized (seen in the previous example).\n\n\n\n\nTopSecretMeetingDay\n\n[1] \"Saturday\"\n\n\n\n\nYou can overwrite a Variable name by assigning a different value to it:\n\nTopSecretMeetingDay &lt;- \"Monday\"\n\n\nTopSecretMeetingDay\n\n[1] \"Monday\"\n\n\n\n\nYou can also remove individual variables via the rm function\n\nrm(Top_Secret_Meeting_Day)\n\n\n\nOr if trying to remove all, via the right sidebar\n\n\n\nIn the prior case, we are creating a variable that is a “string” of character values, due to our use of “” around the word. We can see this when we use the str() function.\n\nFluorophores &lt;- \"FITC\"\nstr(Fluorophores)\n\n chr \"FITC\"\n\n\nThe “chr” in front denotating that Fluorophores contains a character string.\n\n\nThis could also be retrieved using the class() function.\n\nclass(Fluorophores)\n\n[1] \"character\"\n\n\n\n\nAlternatively, we could assign a numeric value to a variable\n\nFluorophores &lt;- 29\nstr(Fluorophores)\n\n num 29\n\n\nWhich returns “num”, ie. numeric.\n\n\nWe can also specify a logical (ie. True or FALSE) to a particular object\n\nIsPerCPCy5AGoodFluorophore &lt;- FALSE\nstr(IsPerCPCy5AGoodFluorophore)\n\n logi FALSE\n\n\nWhich returns logi in front, denoting this variable contains a logical value.\n\n\nLast week, when we were installing dplyr, the reason that installation failed was install.packages() expects a character string. However, when we left off the ““, it looked within our local environments created variables for the dplyr variable, couldn’t find it, and thus failed.\nWe could of course, have assigned a character value to a variable name, and then used that variable name, which would have worked.\n\nPackageToInstall &lt;- \"dplyr\"\n\ninstall.packages(PackageToInstall)",
     "crumbs": [
       "About",
       "Intro to R",
@@ -100,7 +100,7 @@
     "href": "course/02_FilePaths/index.html#file-paths",
     "title": "02 - File Paths",
     "section": "File Paths",
-    "text": "File Paths\nOne way we can do this is through a file.path argument. We could potentially provide this by adding either a / or a  into the path argument, depending on your computers operating system.\n\nlist.files(path=\"data/target\", full.names=FALSE, recursive=FALSE)\n\n\n\nWhile this works in your particular context, if you are sharing the code with others who have a different operating system, these hard-coded / or  will cause the code for them to error out at these particular steps.\n\nFor that reason, it is better to assemble a file.path using the file.path() function. This function takes into account the operating system, removing your need to have to worry about this particular computing nuance, and write code that is reproducible and replicable for everyone.\n\nFolderLocation &lt;- file.path(\"data\", \"target\")\nFolderLocation\n\n[1] \"data/target\"\n\n\n\nlist.files(path=FolderLocation, full.names=FALSE, recursive=FALSE)\n\n\n\n\nWe can also append additional locations to existing file paths, by including the variable name within the file.path() we are creating.\n\nFolderLocation &lt;- \"data\"\nScreenshotFolder &lt;- file.path(FolderLocation, \"target\")\nScreenshotFolder\n\n[1] \"data/target\"\n\n\n\nlist.files(path=ScreenshotFolder, full.names=FALSE, recursive=FALSE)\n\ncharacter(0)\n\n\n\n\n\nAdditionally, list.files() has the ability to filter for files that contain a particular character string. This can be useful is we are searching for “.fcs” or “.csv” files, but also for files that contain a particular word. In the case of the ScreenshotFolders\n\nlist.files(path=ScreenshotFolder, pattern=\"ND050\", full.names=FALSE, recursive=FALSE)\n\n\nYou will notice, the index numbers are in the context of what is filtered, not all the folder contents.",
+    "text": "File Paths\nOne way we can do this is through a file.path argument. We could potentially provide this by adding either a / or a  into the path argument, depending on your computers operating system.\n\nlist.files(path=\"data/target\", full.names=FALSE, recursive=FALSE)\n\n\n\nWhile this works in your particular context, if you are sharing the code with others who have a different operating system, these hard-coded / or  will cause the code for them to error out at these particular steps.\n\nFor that reason, it is better to assemble a file.path using the file.path() function. This function takes into account the operating system, removing your need to have to worry about this particular computing nuance, and write code that is reproducible and replicable for everyone.\n\nFolderLocation &lt;- file.path(\"data\", \"target\")\nFolderLocation\n\n[1] \"data/target\"\n\n\n\nlist.files(path=FolderLocation, full.names=FALSE, recursive=FALSE)\n\n\n\n\nWe can also append additional locations to existing file paths, by including the variable name within the file.path() we are creating.\n\nFolderLocation &lt;- \"data\"\nScreenshotFolder &lt;- file.path(FolderLocation, \"target\")\nScreenshotFolder\n\n[1] \"data/target\"\n\n\n\nlist.files(path=ScreenshotFolder, full.names=FALSE, recursive=FALSE)\n\n\n\n\nAdditionally, list.files() has the ability to filter for files that contain a particular character string. This can be useful is we are searching for “.fcs” or “.csv” files, but also for files that contain a particular word. In the case of the ScreenshotFolders\n\nlist.files(path=ScreenshotFolder, pattern=\"ND050\", full.names=FALSE, recursive=FALSE)\n\n\nYou will notice, the index numbers are in the context of what is filtered, not all the folder contents.",
     "crumbs": [
       "About",
       "Intro to R",
@@ -124,7 +124,7 @@
     "href": "course/02_FilePaths/index.html#conditionals",
     "title": "02 - File Paths",
     "section": "Conditionals",
-    "text": "Conditionals\nOne useful thing is that within R, we can set conditions on whether something is carried out. The most typical conditional you will encounter are the “If” statements. They typically take a form that resembles the following.\n\n#|eval: FALSE\n\nNeedCoffee &lt;- TRUE\n\nif (NeedCoffee){\n    print(\"Take a break\")\n}\n\n[1] \"Take a break\"\n\n\n\n\nIn this case of the above, if the variable within the () is equal to true, the code within the {} will be executed.\n\nNeedCoffee &lt;- TRUE\n\nif (NeedCoffee){\n    print(\"Take a break\")\n}\n\n[1] \"Take a break\"\n\n\n\n\nBy contrast, when the variable within the () is equal to false, the code within the {} will not be executed.\n\nNeedCoffee &lt;- FALSE\n\nif (NeedCoffee){\n    print(\"Take a break\")\n}\n\n\n\nThese “If” statements will trigger as long as the specified condition within the () is TRUE. For a different example:\n\nRowNumber &lt;- 299\n2 + RowNumber &gt; 300\n\n[1] TRUE\n\n\n\nif (2 + RowNumber &gt; 3){\n    print(\"Stop Iterating\")\n}\n\n[1] \"Stop Iterating\"\n\n\n\n\nWhen you add an ! in front a conditional, it flips the expected outcome.\n\nItsRaining &lt;- TRUE\n\nif (!ItsRaining){print(\"Bring an Umbrella\")}\n\n\n!ItsRaining\n\n[1] FALSE\n\n\n\nItsRaining &lt;- TRUE\n\nif (!ItsRaining){print(\"Bring Sunglasses\")}\n\n\n\nWe will explore more complicated conditionals throughout the course, but for now, let’s implement a couple simple ones in the context of copying over the .fcs files in Infants over to a new target3 folder.",
+    "text": "Conditionals\nOne useful thing is that within R, we can set conditions on whether something is carried out. The most typical conditional you will encounter are the “If” statements. They typically take a form that resembles the following.\n\nNeedCoffee &lt;- TRUE\n\nif (NeedCoffee){\n    print(\"Take a break\")\n}\n\n\n\nIn this case of the above, if the variable within the () is equal to true, the code within the {} will be executed.\n\nNeedCoffee &lt;- TRUE\n\nif (NeedCoffee){\n    print(\"Take a break\")\n}\n\n[1] \"Take a break\"\n\n\n\n\nBy contrast, when the variable within the () is equal to false, the code within the {} will not be executed.\n\nNeedCoffee &lt;- FALSE\n\nif (NeedCoffee){\n    print(\"Take a break\")\n}\n\n\n\nThese “If” statements will trigger as long as the specified condition within the () is TRUE. For a different example:\n\nRowNumber &lt;- 299\n2 + RowNumber &gt; 300\n\n[1] TRUE\n\n\n\nif (2 + RowNumber &gt; 3){\n    print(\"Stop Iterating\")\n}\n\n[1] \"Stop Iterating\"\n\n\n\n\nWhen you add an ! in front a conditional, it flips the expected outcome.\n\nItsRaining &lt;- TRUE\n\nif (ItsRaining){print(\"Bring an Umbrella\")}\n\n[1] \"Bring an Umbrella\"\n\n\n\n!ItsRaining\n\n[1] FALSE\n\n\n\nif (!ItsRaining){print(\"Bring an Umbrella\")}\n\n\nItsRaining &lt;- TRUE\n\nif (!ItsRaining){print(\"Bring Sunglasses\")}\n\n\n\nWe will explore more complicated conditionals throughout the course, but for now, let’s implement a couple simple ones in the context of copying over the .fcs files in Infants over to a new target3 folder.",
     "crumbs": [
       "About",
       "Intro to R",
@@ -180,6 +180,18 @@
     ]
   },
   {
+    "objectID": "course/02_FilePaths/index.html#recursive",
+    "href": "course/02_FilePaths/index.html#recursive",
+    "title": "02 - File Paths",
+    "section": "Recursive",
+    "text": "Recursive\nAnd finally that we have created additional nested folders and populated them with fcs files, let’s see what setting list.files() recursive argument to TRUE\n\nall_files_present &lt;- list.files(full.names=TRUE, recursive=TRUE)\nall_files_present \n\n\n\n\nIn this case, all files in all folders within the working directory are shown. This can be useful when exploring folder contents, but if there are a lot of files present within the folder, it will take a while to return the list.",
+    "crumbs": [
+      "About",
+      "Intro to R",
+      "02 - File Paths"
+    ]
+  },
+  {
     "objectID": "course/02_FilePaths/index.html#saving-changes-to-version-control",
     "href": "course/02_FilePaths/index.html#saving-changes-to-version-control",
     "title": "02 - File Paths",
@@ -196,98 +208,105 @@
     "href": "course/02_FilePaths/slides.html#set-up",
     "title": "02 - File Paths",
     "section": "Set Up",
-    "text": "Set Up\n\n\n\n\n\n\n\n\n.\n\n\nBefore we begin, let’s make sure you get the data needed for today transferred to your local computer, and then get the .fcs files copied over from there to your own working project folder. This is the process you will repeat each week throughout the course.\n\n\n\n\n\nNew Repository\n\n\n\n\n\n\n\n\n.\n\n\nFirst off, login to your GitHub account. Once there, you will select the options to create a new repository (similar to what you did during Using GitHub)"
+    "text": "Set Up\n\n\n\n\n\n\n\n\n.\n\n\nBefore we begin, let’s make sure you get the data needed for today transferred to your local computer, and then get the .fcs files copied over from there to your own working project folder. This is the process you will repeat each week throughout the course."
   },
   {
     "objectID": "course/02_FilePaths/slides.html#working-directory",
     "href": "course/02_FilePaths/slides.html#working-directory",
     "title": "02 - File Paths",
     "section": "Working Directory",
-    "text": "Working Directory\n\n\n\n\n\n\n\n\n.\n\n\nNow that we are back in our Week2 folder, let’s start by seeing our current location similarly to how our computer perceives it.\nWe will use getwd() function (ie. get working directory) to return the location of the folder we are currently inside of. For example, when getwd() is run in the process of generating the webpage for 02_FilePaths, we see the following location"
+    "text": "Working Directory\n\n\n\n\n\n\n\n\n.\n\n\nNow that we are back in our Week2 folder, let’s start by seeing our current location similarly to how our computer perceives it.\nWe will use getwd() function (ie. get working directory) to return the location of the folder we are currently inside of. For example, when getwd() is run within my Week2 project folder, I see the following location"
   },
   {
     "objectID": "course/02_FilePaths/slides.html#directories",
     "href": "course/02_FilePaths/slides.html#directories",
     "title": "02 - File Paths",
     "section": "Directories",
-    "text": "Directories\n\n\n\n\n\n\n\n\n.\n\n\nWithin this working directory, we have a variety of project folders and files related to the course. We can see the folders that are present using the list.dirs() function.\n\n\n\n\n\n\nlist.dirs(path=\".\", full.names=FALSE, recursive=FALSE)\n\n[1] \"data\"   \"images\"\n\n\n\n\n\n\n\n\n\n\n.\n\n\nWithin this list.dirs() function, we are specifying two arguments with which we will be working with later today, full.names and recursive. For now, lets set their arguments to FALSE, which means they conditions they implement are inactive (turned off)."
+    "text": "Directories\n\n\n\n\n\n\n\n\n.\n\n\nWithin this working directory, we have a variety of project folders and files related to the course. We can see the folders that are present using the list.dirs() function.\n\n\n\n\n\n\n\n\n\n\nlist.dirs(path=\".\", full.names=FALSE, recursive=FALSE)"
   },
   {
     "objectID": "course/02_FilePaths/slides.html#variables",
     "href": "course/02_FilePaths/slides.html#variables",
     "title": "02 - File Paths",
     "section": "Variables",
-    "text": "Variables\n\n\n\n\n\n\n\n\n.\n\n\nBefore exploring file paths, we need to have some basic R code knowledge that we can use to work with them. Within R, we have the ability to assign particular values (be they character strings, numbers or logicals) to objects (ie. variables) that can be used when called upon later.\nFor example:\n\n\n\n\n\n\nWhatDayDidIWriteThis &lt;- \"Saturday\"\n\n\n\n\n\n\n\n\n\n.\n\n\nIn this case, the variable name is what the assignment arrow (“&lt;-”) is pointing at. In this case, WhatDayDidIWriteThis"
+    "text": "Variables\n\n\n\n\n\n\n\n\n.\n\n\nBefore exploring file paths, we need to have some basic R code knowledge that we can use to work with them. Within R, we have the ability to assign particular values (be they character strings, numbers or logicals) to objects (ie. variables) that can be used when called upon later.\nFor example:\n\n\n\n\n\n\n\nWhatDayDidIWriteThis &lt;- \"Saturday\"\n\n\n\n\n\n\n\n\n\n\n.\n\n\nIn this case, the variable name is what the assignment arrow (“&lt;-”) is pointing at. In this case, WhatDayDidIWriteThis"
   },
   {
     "objectID": "course/02_FilePaths/slides.html#indexing",
     "href": "course/02_FilePaths/slides.html#indexing",
     "title": "02 - File Paths",
     "section": "Indexing",
-    "text": "Indexing\n\n\n\n\n\n\n\n\n.\n\n\nNot all variables contain single objects.\nFor example, we can modify Fluorophores and add additional entries:\n\n\n\n\n\n\nFluorophores &lt;- c(\"BV421\", \"FITC\", \"PE\", \"APC\")\nstr(Fluorophores)\n\n chr [1:4] \"BV421\" \"FITC\" \"PE\" \"APC\"\n\n\n\n\n\n\n\n\n\n\n.\n\n\nThe c stands for concatenate. It concatenates the objects into a larger object, known as a vector.\nIn this case, you notice in addition to the specification the values are characters, we get a [1:4], denoting four objects are present."
+    "text": "Indexing\n\n\n\n\n\n\n\n\n.\n\n\nNot all variables contain single objects.\nFor example, we can modify Fluorophores and add additional entries:\n\n\n\n\n\n\n\nFluorophores &lt;- c(\"BV421\", \"FITC\", \"PE\", \"APC\")\nstr(Fluorophores)\n\n chr [1:4] \"BV421\" \"FITC\" \"PE\" \"APC\"\n\n\n\n\n\n\n\n\n\n\n\n.\n\n\nThe c stands for concatenate. It concatenates the objects into a larger object, known as a vector.\nIn this case, you notice in addition to the specification the values are characters, we get a [1:4], denoting four objects are present."
   },
   {
     "objectID": "course/02_FilePaths/slides.html#listing-files",
     "href": "course/02_FilePaths/slides.html#listing-files",
     "title": "02 - File Paths",
     "section": "Listing Files",
-    "text": "Listing Files\n\n\n\n\n\n\n\n\n.\n\n\nAfter this detour into variables and indexing, let’s return our focus to how to use these in context of file paths. Working from within our Week2 project folder, let’s see what directories (folders) are present\n\n\n\n\n\n\nlist.dirs(path=\".\", full.names=FALSE, recursive=FALSE)"
+    "text": "Listing Files\n\n\n\n\n\n\n\n\n.\n\n\nAfter this detour into variables and indexing, let’s return our focus to how to use these in context of file paths. Working from within our Week2 project folder, let’s see what directories (folders) are present\n\n\n\n\n\n\n\nlist.dirs(path=\".\", full.names=FALSE, recursive=FALSE)"
   },
   {
     "objectID": "course/02_FilePaths/slides.html#creating-directories",
     "href": "course/02_FilePaths/slides.html#creating-directories",
     "title": "02 - File Paths",
     "section": "Creating directories",
-    "text": "Creating directories\n\n\n\n\n\n\n\n\n.\n\n\nAlternatively, we can also create a folder via R using the dir.create() function. Since we want it within data, we would modify the path accordingly\n\n\n\n\n\n\nNewFolderLocation &lt;- file.path(\"data\", \"target2\")\n\ndir.create(path=NewFolderLocation)"
+    "text": "Creating directories\n\n\n\n\n\n\n\n\n.\n\n\nAlternatively, we can also create a folder via R using the dir.create() function. Since we want it within data, we would modify the path accordingly\n\n\n\n\n\n\n\nNewFolderLocation &lt;- file.path(\"data\", \"target2\")\n\ndir.create(path=NewFolderLocation)"
   },
   {
     "objectID": "course/02_FilePaths/slides.html#file-paths",
     "href": "course/02_FilePaths/slides.html#file-paths",
     "title": "02 - File Paths",
     "section": "File Paths",
-    "text": "File Paths\n\n\n\n\n\n\n\n\n.\n\n\nOne way we can do this is through a file.path argument. We could potentially provide this by adding either a / or a  into the path argument, depending on your computers operating system.\n\n\n\n\n\n\nlist.files(path=\"data/target\", full.names=FALSE, recursive=FALSE)"
+    "text": "File Paths\n\n\n\n\n\n\n\n\n.\n\n\nOne way we can do this is through a file.path argument. We could potentially provide this by adding either a / or a  into the path argument, depending on your computers operating system.\n\n\n\n\n\n\n\nlist.files(path=\"data/target\", full.names=FALSE, recursive=FALSE)"
   },
   {
     "objectID": "course/02_FilePaths/slides.html#selecting-for-patterns",
     "href": "course/02_FilePaths/slides.html#selecting-for-patterns",
     "title": "02 - File Paths",
     "section": "Selecting for Patterns",
-    "text": "Selecting for Patterns\n\n\n\n\n\n\n\n\n.\n\n\nYou will notice, in the above example, we provided a character string (“ND050”) that was used to return files that contained the matching pattern. If we currently listed the files within data, we get a return that looks like this:\n\n\n\n\n\n\nlist.files(\"data\", full.names=FALSE, recursive=FALSE)"
+    "text": "Selecting for Patterns\n\n\n\n\n\n\n\n\n.\n\n\nYou will notice, in the above example, we provided a character string (“ND050”) that was used to return files that contained the matching pattern. If we currently listed the files within data, we get a return that looks like this:\n\n\n\n\n\n\n\nlist.files(\"data\", full.names=FALSE, recursive=FALSE)"
   },
   {
     "objectID": "course/02_FilePaths/slides.html#conditionals",
     "href": "course/02_FilePaths/slides.html#conditionals",
     "title": "02 - File Paths",
     "section": "Conditionals",
-    "text": "Conditionals\n\n\n\n\n\n\n\n\n.\n\n\nOne useful thing is that within R, we can set conditions on whether something is carried out. The most typical conditional you will encounter are the “If” statements. They typically take a form that resembles the following.\n\n\n\n\n\n\n#|eval: FALSE\n\nNeedCoffee &lt;- TRUE\n\nif (NeedCoffee){\n    print(\"Take a break\")\n}\n\n[1] \"Take a break\""
+    "text": "Conditionals\n\n\n\n\n\n\n\n\n.\n\n\nOne useful thing is that within R, we can set conditions on whether something is carried out. The most typical conditional you will encounter are the “If” statements. They typically take a form that resembles the following.\n\n\n\n\n\n\n\nNeedCoffee &lt;- TRUE\n\nif (NeedCoffee){\n    print(\"Take a break\")\n}"
   },
   {
     "objectID": "course/02_FilePaths/slides.html#conditionals-in-practice",
     "href": "course/02_FilePaths/slides.html#conditionals-in-practice",
     "title": "02 - File Paths",
     "section": "Conditionals in practice",
-    "text": "Conditionals in practice\n\n\n\n\n\n\n\n\n.\n\n\nFirst off, let’s write a conditional to check if there is a target3 folder within data.\n\n\n\n\n\n\nfiles_present &lt;- list.files(\"data\", full.names=FALSE, recursive=FALSE)\nfiles_present"
+    "text": "Conditionals in practice\n\n\n\n\n\n\n\n\n.\n\n\nFirst off, let’s write a conditional to check if there is a target3 folder within data.\n\n\n\n\n\n\n\nfiles_present &lt;- list.files(\"data\", full.names=FALSE, recursive=FALSE)\nfiles_present"
   },
   {
     "objectID": "course/02_FilePaths/slides.html#copying-files",
     "href": "course/02_FilePaths/slides.html#copying-files",
     "title": "02 - File Paths",
     "section": "Copying Files",
-    "text": "Copying Files\n\n\n\n\n\n\n\n\n.\n\n\nTo copy files to another folder location, we use the file.copy() function. It has two arguments that we will be working with, from being the .fcs files, and to being the folder location we wish to transfer them to. If we tried using them as we currently have them:\n\n\n\n\n\n\n# Variable Infants containing 4 .fcs file names\n\nfile.copy(from=Infants, to=FolderTarget3)"
+    "text": "Copying Files\n\n\n\n\n\n\n\n\n.\n\n\nTo copy files to another folder location, we use the file.copy() function. It has two arguments that we will be working with, from being the .fcs files, and to being the folder location we wish to transfer them to. If we tried using them as we currently have them:\n\n\n\n\n\n\n\n# Variable Infants containing 4 .fcs file names\n\nfile.copy(from=Infants, to=FolderTarget3)"
   },
   {
     "objectID": "course/02_FilePaths/slides.html#removing-files.",
     "href": "course/02_FilePaths/slides.html#removing-files.",
     "title": "02 - File Paths",
     "section": "Removing files.",
-    "text": "Removing files.\n\n\n\n\n\n\n\n\n.\n\n\nJust like we can add files via R, we can also remove them. However, when we remove them via this route, they are removed permanently, not sent to the recycle bin. We will revisit how later on in the course after you have gained additional experience with file.paths.\n\n\n\n\n\n\n?unlink()"
+    "text": "Removing files.\n\n\n\n\n\n\n\n\n.\n\n\nJust like we can add files via R, we can also remove them. However, when we remove them via this route, they are removed permanently, not sent to the recycle bin. We will revisit how later on in the course after you have gained additional experience with file.paths.\n\n\n\n\n\n\n\n?unlink()"
   },
   {
     "objectID": "course/02_FilePaths/slides.html#basename",
     "href": "course/02_FilePaths/slides.html#basename",
     "title": "02 - File Paths",
     "section": "Basename",
-    "text": "Basename\n\n\n\n\n\n\n\n\n.\n\n\nIf we look at Infants with the full.names=TRUE, we see the additional pathing folder has been added, allowing us to successfully copy over the files.\n\n\n\n\n\n\nInfants"
+    "text": "Basename\n\n\n\n\n\n\n\n\n.\n\n\nIf we look at Infants with the full.names=TRUE, we see the additional pathing folder has been added, allowing us to successfully copy over the files.\n\n\n\n\n\n\n\nInfants"
+  },
+  {
+    "objectID": "course/02_FilePaths/slides.html#recursive",
+    "href": "course/02_FilePaths/slides.html#recursive",
+    "title": "02 - File Paths",
+    "section": "Recursive",
+    "text": "Recursive\n\n\n\n\n\n\n\n\n.\n\n\nAnd finally that we have created additional nested folders and populated them with fcs files, let’s see what setting list.files() recursive argument to TRUE\n\n\n\n\n\n\n\nall_files_present &lt;- list.files(full.names=TRUE, recursive=TRUE)\nall_files_present"
   },
   {
     "objectID": "course/02_FilePaths/slides.html#saving-changes-to-version-control",
